@@ -118,7 +118,7 @@ public class SystemController {
 
     @GetMapping ("deck")
     public String  testView2(@RequestParam(defaultValue = "1") int id, Model model){
-
+        //TODO Использовать DeckInfoService
         List<Decks> listDecks = (ArrayList<Decks>) decksRepository.findAll();
 
         List<String> listLink = new ArrayList<>();
@@ -161,6 +161,7 @@ public class SystemController {
 
     @GetMapping ("/videoarchive")
     public String  videoarchiveView() {
+        //TODO Использовать DeckInfoService
         return "videoarchive";
     }
 }
