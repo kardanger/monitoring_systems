@@ -16,21 +16,26 @@ public class DeckInfoServiceImpl implements  DeckInfoService{
     
     @Override
     public DeckInfo buildGetInfoByDeck(int idDeck) {
+        //TODO Возращать объект DeckInfo по ИД палубы
         return null;
     }
 
     @Override
     public List<Sensors> getSensorsByDeck(int idDeck) {
+        //TODO Возращать объект Sensors по ИД палубы
         return null;
     }
 
     @Override
     public List<Camera> getCamerasByDeck(int idDeck) {
+        //TODO Возращать объект Camera по ИД палубы
         return null;
     }
 
     @Override
     public List<VideoEntity> getVideoEntityByDeck(int idDeck) {
+
+        //TODO Возращать объект Camera по ИД палубы
         return null;
     }
 }
