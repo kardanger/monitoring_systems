@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 //Контроллер отображения представлений для отображения состояния системы монтироинга
 @Controller
@@ -175,6 +176,16 @@ public class SystemController {
         List<VideoEntity> listVideoEntity = deckInfoService.getVideoEntityByDeck(id);
         ModelAndView mav = new ModelAndView("video_entity");
         mav.addObject("listVideoEntity", listVideoEntity);
+        return mav;
+    }
+
+
+    //Представление страницы видеоархива  камер на палубе
+    @GetMapping ("/video")
+    public ModelAndView  videoView(@RequestParam int id) {
+        Optional<VideoEntity> videoEntity = videoEntityRepository.findById(id);
+        ModelAndView mav = new ModelAndView("video");
+        mav.addObject("videoEntity", videoEntity.get());
         return mav;
     }
 }

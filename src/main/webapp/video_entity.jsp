@@ -41,7 +41,7 @@
       <th scope="col">Серийный номер камеры</th>
       <th scope="col">Состояние камеры</th>
       <th scope="col">Длительность</th>
-      <th scope="col">Вреия начала записи</th>
+      <th scope="col">Время начала записи</th>
       <th scope="col">URI</th>
     </tr>
   </thead>
@@ -54,7 +54,9 @@
                   <td>${entity.camera.status}</td>
                   <td>${entity.duration}</td>
                   <td>${entity.beginTime}</td>
-                  <td>${entity.uri}</td>
+                  <td>
+                      <a href="/video?id=${entity.id}">${entity.uri}</a>
+                  </td>
               </tr>
     </c:forEach>
   </tbody>

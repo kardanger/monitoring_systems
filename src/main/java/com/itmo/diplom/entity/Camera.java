@@ -13,6 +13,16 @@ public class Camera {
     private String serial;
     private String status;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
     public Integer getId() {
         return id;
     }
