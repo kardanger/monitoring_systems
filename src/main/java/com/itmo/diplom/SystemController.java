@@ -2,6 +2,7 @@ package com.itmo.diplom;
 
 import com.itmo.diplom.entity.*;
 import com.itmo.diplom.repo.*;
+import com.itmo.diplom.service.DeckInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +41,9 @@ public class SystemController {
     @Autowired
     private CameraRepository cameraRepository;
 
+    @Autowired
+    private DeckInfoServiceImpl deckInfoService;
+
     //Представление страницы отображения таблицы БД со списком типов камер
     @GetMapping ("/cameras_type")
     public ModelAndView  CamerasTypeView() {
@@ -48,6 +52,7 @@ public class SystemController {
         mav.addObject("listCamera", listCamera);
         return mav;
     }
+
     //Представление страницы отображения таблицы БД со списком отсеков и помещений
     @GetMapping ("/compartment")
     public ModelAndView  CompartmentView() {
@@ -56,6 +61,7 @@ public class SystemController {
         mav.addObject("listCompartment", listCompartment);
         return mav;
     }
+
     //Представление страницы отображения таблицы БД с типами используемых систем контроля
     @GetMapping ("/control_system")
     public ModelAndView  ControlSystemView() {
@@ -64,6 +70,7 @@ public class SystemController {
         mav.addObject("listControlSystem", listControlSystem);
         return mav;
     }
+
     //Представление страницы отображения таблицы БД со списком палуб судна
     @GetMapping ("/decks")
     public ModelAndView  decksView() {
@@ -72,6 +79,7 @@ public class SystemController {
         mav.addObject("listDecks", listControlSystem);
         return mav;
     }
+
     //Представление страницы отображения таблицы БД с типами датчиков
     @GetMapping ("/sensors_type")
     public ModelAndView  sensorsTypeView() {
@@ -99,6 +107,7 @@ public class SystemController {
         mav.addObject("listSensors", listSensors);
         return mav;
     }
+
     //Представление страницы отображения таблицы БД с камерами наблюдения
     @GetMapping ("/cameras")
     public ModelAndView  CamerasView() {
@@ -115,57 +124,57 @@ public class SystemController {
         return "info";
     }
 
-    //Представление для выбора просматриваемой палубы и выбора необходимой таблицы с информацией
-    // по камерам или датчикам расположенных на палубе
-    @GetMapping ("deck")
-    public String  testView2(@RequestParam(defaultValue = "1") int id, Model model){
-        //TODO Использовать DeckInfoService
-
-        //Заглушка имитирующая бизнес-логику при выборе палубы
-        List<Decks> listDecks = (ArrayList<Decks>) decksRepository.findAll();
-
-        List<String> listLink = new ArrayList<>();
-
-        for (Decks deck:
-                listDecks) {
-            String s = String.valueOf(deck.getId());
-            listLink.add("/deck?id=" + s);
-            model.addAttribute("link" + s, listLink.get(listLink.size() - 1));
-        }
-
-        switch (id){
-            case (1): {
-                String link_image = "/resources/image/2b40fd31887e6c4140ef935abe29e162.png";
-                model.addAttribute("link_prev", listLink.get(0));
-                model.addAttribute("link_next", listLink.get(1));
-                model.addAttribute("link_image", link_image);
-                model.addAttribute("name","Палуба А");
-            }
-            break;
-            case (2): {
-                String link_image = "/resources/image/2d097ac5c02d2a3670a7546537e23c66.png";
-                model.addAttribute("link_prev", listLink.get(0));
-                model.addAttribute("link_next", listLink.get(2));
-                model.addAttribute("link_image", link_image);
-                model.addAttribute("name","Палуба B");
-            }
-            break;
-            case (3): {
-                String link_image = "/resources/image/02aa0871ddba285eab67a995f319332c.png";
-                model.addAttribute("link_prev", listLink.get(1));
-                model.addAttribute("link_next", listLink.get(2));
-                model.addAttribute("link_image", link_image);
-                model.addAttribute("name","Палуба C");
-            }
-            break;
-        }
-        return "deck";
-    }
-
     //Представление страницы видеоархива
     @GetMapping ("/videoarchive")
     public String  videoarchiveView() {
         //TODO Использовать DeckInfoService
         return "videoarchive";
+    }
+
+    //Представление для выбора просматриваемой палубы и выбора необходимой таблицы с информацией
+    // по камерам или датчикам расположенных на палубе
+    @GetMapping ("/demo_decks")
+    public ModelAndView  decksDemoView(@RequestParam(defaultValue = "1") int id) {
+        int prevId = id - 1;
+        int nextId = id + 1;
+
+        List<Decks> listDecks = (ArrayList<Decks>) decksRepository.findAll();
+        prevId = prevId < 1 ? 1 : prevId;
+        nextId = nextId > listDecks.size() ? listDecks.size() : nextId;
+
+        ModelAndView mav = new ModelAndView("deck_demo");
+        mav.addObject("listDecks", listDecks);
+        mav.addObject("currentId", id);
+        mav.addObject("currentIndex", id-1);
+        mav.addObject("prevId", prevId);
+        mav.addObject("nextId", nextId);
+        return mav;
+    }
+
+    //Представление списка камер на палубе
+    @GetMapping ("/camera_by_deck")
+    public ModelAndView  cameraByDeckView(@RequestParam(defaultValue = "1") int id) {
+        List<Camera> listCameras = deckInfoService.getCamerasByDeck(id);
+        ModelAndView mav = new ModelAndView("cameras");
+        mav.addObject("listCameras", listCameras);
+        return mav;
+    }
+
+    //Представление страницы датчиков  на палубе
+    @GetMapping ("/sensor_by_deck")
+    public ModelAndView  sensorByDeckView(@RequestParam(defaultValue = "1") int id) {
+        List<Sensors> listSensors = deckInfoService.getSensorsByDeck(id);
+        ModelAndView mav = new ModelAndView("sensors");
+        mav.addObject("listSensors", listSensors);
+        return mav;
+    }
+
+    //Представление страницы видеоархива  камер на палубе
+    @GetMapping ("/videos_by_deck")
+    public ModelAndView  videosByDeckView(@RequestParam(defaultValue = "1") int id) {
+        List<VideoEntity> listVideoEntity = deckInfoService.getVideoEntityByDeck(id);
+        ModelAndView mav = new ModelAndView("video_entity");
+        mav.addObject("listVideoEntity", listVideoEntity);
+        return mav;
     }
 }

@@ -55,15 +55,13 @@
                                 </ul>
                              </nav>
                         </div>
-
          </div>
 
         <div class="container">
-                             <img src="${contextPath}${link_image}" class="img-fluid" alt="Responsive image">
+                      <img src="${contextPath}${link_image}" class="img-fluid" alt="Responsive image">
         </div>
 
         <div class="row">
-
                 <div class="row mr-auto ml-auto">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="${contextPath}/cameras" class="btn btn-secondary">Список камер</a>

@@ -36,9 +36,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Action</th>
+      <th scope="col">ИД</th>
+      <th scope="col">Тип камеры</th>
     </tr>
   </thead>
   <tbody>
@@ -46,10 +45,6 @@
               <tr>
                   <td>${camera.id}</td>
                   <td>${camera.name}</td>
-                  <td>
-                      <a href="/edit?id=${camera.id}">Edit</a>
-                      <a href="/delete?id=${camera.id}">Delete</a>
-                  </td>
               </tr>
     </c:forEach>
   </tbody>

@@ -1,7 +1,5 @@
 package com.itmo.diplom.entity;
 
-import org.hibernate.annotations.ManyToAny;
-
 import javax.persistence.*;
 
 @Entity(name="videoarchive")

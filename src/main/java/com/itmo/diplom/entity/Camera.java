@@ -1,7 +1,6 @@
 package com.itmo.diplom.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name="cameras")

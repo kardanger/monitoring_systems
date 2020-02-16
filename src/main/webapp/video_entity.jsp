@@ -36,14 +36,13 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">ID camera</th>
-      <th scope="col">Camera Serial</th>
-      <th scope="col">Camera Status</th>
-      <th scope="col">Duration</th>
-      <th scope="col">Begin Time</th>
+      <th scope="col">ИД</th>
+      <th scope="col">ИД камеры</th>
+      <th scope="col">Серийный номер камеры</th>
+      <th scope="col">Состояние камеры</th>
+      <th scope="col">Длительность</th>
+      <th scope="col">Вреия начала записи</th>
       <th scope="col">URI</th>
-      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -56,10 +55,6 @@
                   <td>${entity.duration}</td>
                   <td>${entity.beginTime}</td>
                   <td>${entity.uri}</td>
-                  <td>
-                      <a href="/edit?id=${entity.id}">Edit</a>
-                      <a href="/delete?id=${entity.id}">Delete</a>
-                  </td>
               </tr>
     </c:forEach>
   </tbody>

@@ -36,13 +36,12 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name Camera Type</th>
-      <th scope="col">Serial</th>
-      <th scope="col">Status</th>
-      <th scope="col">Name Compartment</th>
-      <th scope="col">Name Decks</th>
-      <th scope="col">Action</th>
+      <th scope="col">ИД</th>
+      <th scope="col">Тип камеры</th>
+      <th scope="col">Серийный номер</th>
+      <th scope="col">Состояние</th>
+      <th scope="col">Помещение</th>
+      <th scope="col">Палуба</th>
     </tr>
   </thead>
   <tbody>
@@ -55,8 +54,7 @@
                   <td>${camera.compartment.name}</td>
                   <td>${camera.deck.name}</td>
                   <td>
-                      <a href="/edit?id=${camera.id}">Edit</a>
-                      <a href="/delete?id=${camera.id}">Delete</a>
+                      <a href="${contextPath}/videoarchive?id=${camera.id}">Видеоархив</a>
                   </td>
               </tr>
     </c:forEach>

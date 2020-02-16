@@ -68,7 +68,7 @@
         <div class="card-body">
           <h5 class="card-title">Палубы</h5>
           <p class="card-text">Список палуб. Расположение камер на палубе. Расположение датчиков на палубе</p>
-          <a href="${contextPath}/deck" class="btn btn-primary">Перейти к списку</a>
+          <a href="${contextPath}/demo_decks" class="btn btn-primary">Перейти к списку</a>
         </div>
       </div>
       </div>

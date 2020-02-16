@@ -36,9 +36,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Action</th>
+      <th scope="col">ИД</th>
+      <th scope="col">Тип датчика</th>
     </tr>
   </thead>
   <tbody>
@@ -46,10 +45,6 @@
               <tr>
                   <td>${type.id}</td>
                   <td>${type.name}</td>
-                  <td>
-                      <a href="/edit?id=${type.id}">Edit</a>
-                      <a href="/delete?id=${type.id}">Delete</a>
-                  </td>
               </tr>
     </c:forEach>
   </tbody>

@@ -11,6 +11,17 @@ public class Decks {
 
     private String name;
 
+    public String getLinkImg() {
+        return linkImg;
+    }
+
+    public void setLinkImg(String linkImg) {
+        this.linkImg = linkImg;
+    }
+
+    @Column(name="link_img")
+    private String linkImg;
+
     @OneToMany(mappedBy = "deck")
     private Set<Camera> cameras;
 

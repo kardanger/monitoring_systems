@@ -32,19 +32,18 @@
 <body>
 
 <div class="container">
-<p><strong>Спсисок датчиков</strong></p>
+<p><strong>Список датчиков</strong></p>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Serial</th>
-      <th scope="col">Status</th>
-      <th scope="col">Name Control System</th>
-      <th scope="col">Name Decks</th>
-      <th scope="col">Name Compartment</th>
-      <th scope="col">Name Sensors Type</th>
-      <th scope="col">Action</th>
+      <th scope="col">ИД</th>
+      <th scope="col">Датчик</th>
+      <th scope="col">Серийный номер</th>
+      <th scope="col">Состояние</th>
+      <th scope="col">Система контрля</th>
+      <th scope="col">Палуба</th>
+      <th scope="col">Отсек</th>
+      <th scope="col">Тип датчика</th>
     </tr>
   </thead>
   <tbody>
@@ -58,10 +57,6 @@
                   <td>${sensor.deck.name}</td>
                   <td>${sensor.compartment.name}</td>
                   <td>${sensor.sensorsType.name}</td>
-                  <td>
-                      <a href="/edit?id=${sensor.id}">Edit</a>
-                      <a href="/delete?id=${sensor.id}">Delete</a>
-                  </td>
               </tr>
     </c:forEach>
   </tbody>

@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface DeckInfoService {
 
-    DeckInfo buildGetInfoByDeck(int idDeck);
-
     List<Sensors> getSensorsByDeck(int idDeck);
 
     List<Camera> getCamerasByDeck(int idDeck);
