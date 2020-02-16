@@ -30,6 +30,7 @@ public class DataController {
     @Autowired
     private CameraRepository cameraRepository;
 
+    //TODO реализовать REST интерфейс
 
     @GetMapping(path="/allCameras")
     public @ResponseBody Iterable<Camera> getAllCameras() {
