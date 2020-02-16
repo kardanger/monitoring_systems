@@ -1,5 +1,7 @@
 package com.itmo.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,15 +13,8 @@ public class ControlSystem {
 
     private String name;
 
-    public Set<Sensors> getSensors() {
-        return sensors;
-    }
-
-    public void setSensors(Set<Sensors> sensors) {
-        this.sensors = sensors;
-    }
-
     @OneToMany(mappedBy = "controlSystem")
+    @JsonBackReference
     private Set<Sensors> sensors;
 
     public Integer getId() {
@@ -36,5 +31,13 @@ public class ControlSystem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Sensors> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(Set<Sensors> sensors) {
+        this.sensors = sensors;
     }
 }

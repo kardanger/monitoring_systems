@@ -1,5 +1,8 @@
 package com.itmo.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,49 +12,26 @@ public class Camera {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-
     private String serial;
     private String status;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private String name;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public Decks getDeck() {
-        return deck;
-    }
-
-    public void setDeck(Decks deck) {
-        this.deck = deck;
-    }
+    @ManyToOne
+    @JoinColumn(name="id_camera_type")
+    @JsonManagedReference
+    private CamerasType cameraType;
 
     @ManyToOne
     @JoinColumn(name="id_decks")
+    @JsonManagedReference
     private Decks deck;
-
-    public Compartment getCompartment() {
-        return compartment;
-    }
-
-    public void setCompartment(Compartment compartment) {
-        this.compartment = compartment;
-    }
 
     @ManyToOne
     @JoinColumn(name="id_compartment")
     private Compartment compartment;
 
     @OneToMany(mappedBy = "camera")
+    @JsonBackReference
     private Set<VideoEntity> videosEntity;
 
     public CamerasType getCameraType() {
@@ -61,10 +41,6 @@ public class Camera {
     public void setCameraType(CamerasType cameraType) {
         this.cameraType = cameraType;
     }
-
-    @ManyToOne
-    @JoinColumn(name="id_camera_type")
-    private CamerasType cameraType;
 
     public Set<VideoEntity> getVideosEntity() {
         return this.videosEntity;
@@ -94,4 +70,27 @@ public class Camera {
         this.status = status;
     }
 
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Decks getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Decks deck) {
+        this.deck = deck;
+    }
+
+    public Compartment getCompartment() {
+        return compartment;
+    }
+
+    public void setCompartment(Compartment compartment) {
+        this.compartment = compartment;
+    }
 }

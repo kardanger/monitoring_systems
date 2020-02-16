@@ -1,5 +1,7 @@
 package com.itmo.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -11,6 +13,28 @@ public class Sensors {
     private String serial;
 
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name="id_decks")
+    @JsonManagedReference
+    private Decks deck;
+
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name="id_compartment")
+    @JsonManagedReference
+    private Compartment compartment;
+
+    @ManyToOne
+    @JoinColumn(name="id_sensors_type")
+    @JsonManagedReference
+    private SensorsType sensorsType;
+
+    @ManyToOne
+    @JoinColumn(name="id_control_system")
+    @JsonManagedReference
+    private ControlSystem controlSystem;
 
     public String getSerial() {
         return serial;
@@ -27,8 +51,6 @@ public class Sensors {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    private String name;
 
     public Integer getId() {
         return id;
@@ -54,10 +76,6 @@ public class Sensors {
         this.deck = deck;
     }
 
-    @ManyToOne
-    @JoinColumn(name="id_decks")
-    private Decks deck;
-
     public Compartment getCompartment() {
         return compartment;
     }
@@ -65,10 +83,6 @@ public class Sensors {
     public void setCompartment(Compartment compartment) {
         this.compartment = compartment;
     }
-
-    @ManyToOne
-    @JoinColumn(name="id_compartment")
-    private Compartment compartment;
 
     public SensorsType getSensorsType() {
         return sensorsType;
@@ -78,10 +92,6 @@ public class Sensors {
         this.sensorsType = sensorsType;
     }
 
-    @ManyToOne
-    @JoinColumn(name="id_sensors_type")
-    private SensorsType sensorsType;
-
     public ControlSystem getControlSystem() {
         return controlSystem;
     }
@@ -89,9 +99,4 @@ public class Sensors {
     public void setControlSystem(ControlSystem controlSystem) {
         this.controlSystem = controlSystem;
     }
-
-    @ManyToOne
-    @JoinColumn(name="id_control_system")
-    private ControlSystem controlSystem;
-
 }

@@ -1,5 +1,7 @@
 package com.itmo.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class CamerasType {
     private String name;
 
     @OneToMany(mappedBy = "cameraType")
+    @JsonBackReference
     private Set<Camera> cameras;
 
     public Integer getId() {

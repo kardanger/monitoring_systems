@@ -1,5 +1,7 @@
 package com.itmo.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity(name="videoarchive")
@@ -15,12 +17,9 @@ public class VideoEntity {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    public void setCamera(Camera camera) {
-        this.camera = camera;
-    }
-
     @ManyToOne
     @JoinColumn(name="id_camera")
+    @JsonManagedReference
     private Camera camera;
 
     public Camera getCamera() {
@@ -64,5 +63,9 @@ public class VideoEntity {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
     }
 }

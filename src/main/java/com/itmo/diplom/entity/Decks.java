@@ -1,5 +1,7 @@
 package com.itmo.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -11,18 +13,15 @@ public class Decks {
 
     private String name;
 
-    public String getLinkImg() {
-        return linkImg;
-    }
-
-    public void setLinkImg(String linkImg) {
-        this.linkImg = linkImg;
-    }
+    @OneToMany(mappedBy = "deck")
+    @JsonBackReference
+    private Set<Sensors> sensors;
 
     @Column(name="link_img")
     private String linkImg;
 
     @OneToMany(mappedBy = "deck")
+    @JsonBackReference
     private Set<Camera> cameras;
 
     public Set<Camera> getCameras() {
@@ -41,10 +40,6 @@ public class Decks {
         this.sensors = sensors;
     }
 
-    @OneToMany(mappedBy = "deck")
-    private Set<Sensors> sensors;
-
-
     public Integer getId() {
         return id;
     }
@@ -59,5 +54,13 @@ public class Decks {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLinkImg() {
+        return linkImg;
+    }
+
+    public void setLinkImg(String linkImg) {
+        this.linkImg = linkImg;
     }
 }
